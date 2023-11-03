@@ -36,30 +36,23 @@ router.put('/:id', validateUserId, validateUser, (req, res, next) => {
 router.delete('/:id', validateUserId, (req, res, next) => {
   Users.remove(req.user.id)
     .then (() => {
-      console.log(req.user)
       res.json(req.user);
     })
     .catch(next)
 });
 
 router.get('/:id/posts', validateUserId, (req, res, next) => {
-  console.log('get posts request initiated')
   Users.getUserPosts(req.user.id)
       .then (posts => {
-          console.log('these are the posts', posts)
           res.status(200).json(posts)
       })
       .catch (next)
 });
 
 router.post('/:id/posts', validatePost, validateUserId, (req, res, next) => {
-// RETURN THE NEWLY CREATED USER POST
-// this needs a middleware to verify user id
-// and another middleware to check that the request body is valid
-console.log('post posts request initiated')
-Posts.insert({user_id: req.user.id, test: req.body.text})
+Posts.insert({user_id: req.user.id, text: req.body.text})
   .then (post => {
-      res.json(post);
+      res.status(201).json(post[0]);
   })
   .catch(next)
 });
