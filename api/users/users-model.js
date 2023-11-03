@@ -39,7 +39,6 @@ function update(id, changes) {
     .where({ id })
     .update(changes)
     .then(rows => {
-      console.log('successfully posted user');
       return getById(id);
     });
 }
