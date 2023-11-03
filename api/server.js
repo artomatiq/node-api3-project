@@ -9,7 +9,6 @@ server.use(express.json());
 server.use(morgan('dev'));
 server.use(logger)
 server.use('/api/users', Users)
-server.use('api/users/:id/posts', Posts)
 
 server.get('/', (req, res) => {
   res.send(`<h2>Let's write some middleware!</h2>`);

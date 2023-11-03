@@ -40,7 +40,7 @@ function validateUser(req, res, next) {
   else {
     next({
       status: 400,
-      message: 'missing required field'
+      message: 'missing required name'
     })
   }
 }
@@ -52,7 +52,7 @@ function validatePost(req, res, next) {
   else {
     next({
       status: 400,
-      message: 'missing required field'
+      message: 'missing required text'
     })
   }
 }
